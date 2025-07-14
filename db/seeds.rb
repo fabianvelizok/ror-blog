@@ -7,3 +7,8 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+user = User.where(email: "admin@blog.com").first_or_initialize
+user.update!(
+  password: "123123123",
+  password_confirmation: "123123123"
+)
