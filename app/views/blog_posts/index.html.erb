@@ -1,12 +1,18 @@
-<h1>Blog Posts:</h1>
+<section class="max-w-3xl mx-auto mt-10 p-6 bg-white rounded shadow">
+  <h1 class="text-3xl font-bold mb-6">Blog Posts</h1>
 
-<ul>
-  <% @blog_posts.each do |blog_post| %>
-    <li>
-      <h2><%= link_to blog_post.title, blog_post_path(blog_post) %></h2>
-      <p><%= blog_post.body %></p>
-    </li>
-  <% end %>
-</ul>
+  <ul class="space-y-6">
+    <% @blog_posts.each do |blog_post| %>
+      <li class="border-b pb-4">
+        <h2 class="text-xl font-semibold text-blue-700 hover:underline">
+          <%= link_to blog_post.title, blog_post_path(blog_post) %>
+        </h2>
+        <p class="mt-2 text-gray-700"><%= blog_post.body %></p>
+      </li>
+    <% end %>
+  </ul>
 
-<%= link_to "New", new_blog_post_path %>
+  <div class="mt-6 text-right">
+    <%= link_to "New", new_blog_post_path, class: "inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded" %>
+  </div>
+</section>

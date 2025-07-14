@@ -1,7 +1,10 @@
-<h1>New Blog Post:</h1>
+<section class="max-w-2xl mx-auto mt-10 p-6 bg-white rounded shadow">
+  <h1 class="text-2xl font-bold mb-6">Edit Blog Post</h1>
 
-<%= render "form", blog_post: @blog_post %>
+  <%= render "form", blog_post: @blog_post %>
 
-<%= button_to "Delete", @blog_post, method: :delete, data: { turbo_confirm: "Are you sure?" } %>
-
-<%= link_to "Show", blog_post_path(@blog_post) %>
+  <div class="flex justify-between items-center mt-6">
+    <%= button_to "Delete", @blog_post, method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded" %>
+    <%= link_to "Back to Post", blog_post_path(@blog_post), class: "text-blue-600 hover:underline" %>
+  </div>
+</section>

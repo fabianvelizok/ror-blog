@@ -10,32 +10,48 @@
 
     <%= yield :head %>
 
-    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
-    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
-
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
 
-    <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <div>
-       <p class="notice"><%= notice %></p>
-       <p class="alert"><%= alert %></p>
-    </div>
+  <body class="bg-gray-100 text-gray-900 font-sans antialiased min-h-screen flex flex-col">
 
-    <% if user_signed_in? %>
-      <%#= link_to "Profile", edit_user_registration_path %>
-      <%= button_to "Logout", destroy_user_session_path, { method: :delete } %>
-    <% else %>
-      <%#= link_to "Login", new_user_session_path %>
-      <%#= link_to "Sign Up", new_user_registration_path %>
-    <% end %>
+    <header class="bg-white shadow p-4 flex justify-between items-center">
+      <h1 class="text-xl font-bold">
+        <%= link_to root_path do %>
+          <%= content_for(:title) || "Blog" %>
+        <% end %>
+      </h1>
 
-    <%= yield %>
+      <div class="space-x-4">
+        <% if user_signed_in? %>
+          <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition" %>
+        <% else %>
+          <%#= link_to "Login", new_user_session_path, class: "text-blue-600 hover:underline" %>
+          <%#= link_to "Sign Up", new_user_registration_path, class: "text-green-600 hover:underline" %>
+        <% end %>
+      </div>
+    </header>
+
+    <main class="flex-grow container mx-auto px-4 py-6">
+      <% if notice %>
+        <p class="mb-4 text-sm text-green-700 bg-green-100 border border-green-200 rounded p-2"><%= notice %></p>
+      <% end %>
+
+      <% if alert %>
+        <p class="mb-4 text-sm text-red-700 bg-red-100 border border-red-200 rounded p-2"><%= alert %></p>
+      <% end %>
+
+      <%= yield %>
+    </main>
+
+    <footer class="bg-gray-200 text-sm text-center p-4 text-gray-600">
+      &copy; <%= Time.now.year %> Tu Blog. Todos los derechos reservados.
+    </footer>
+
   </body>
 </html>
