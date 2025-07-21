@@ -4,9 +4,15 @@
   <ul class="space-y-6">
     <% @blog_posts.each do |blog_post| %>
       <li class="border-b pb-4">
-        <h2 class="text-xl font-semibold text-blue-700 hover:underline">
-          <%= link_to blog_post.title, blog_post_path(blog_post) %>
-        </h2>
+        <div class="flex justify-between">
+          <h2 class="text-xl font-semibold text-blue-700 hover:underline">
+            <%= link_to blog_post.title, blog_post_path(blog_post) %>
+          </h2>
+          <% if user_signed_in? %>
+            <p class="text-gray-700 mb-6"><%= blog_post_status(blog_post) %></p>
+          <% end %>
+        </div>
+   
         <p class="mt-2 text-gray-700"><%= blog_post.body %></p>
       </li>
     <% end %>
