@@ -1,5 +1,7 @@
 source "https://rubygems.org"
 
+ruby "3.4.4"
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 8.0.2"
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
@@ -38,7 +40,7 @@ gem "image_processing", "~> 1.2"
 gem "devise", "~> 4.9"
 
 gem "tailwindcss-rails", "~> 4.3"
-
+  
 gem "aws-sdk-s3", require: false
 
 group :development, :test do
