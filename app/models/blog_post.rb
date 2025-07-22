@@ -12,7 +12,7 @@ class BlogPost < ApplicationRecord
   def draft?
     published_at.nil?
   end
-  
+
   def published?
     published_at? && published_at <= Time.current
   end
